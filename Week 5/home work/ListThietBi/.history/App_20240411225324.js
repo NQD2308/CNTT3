@@ -1,0 +1,108 @@
+import { StatusBar } from "expo-status-bar";
+import React, { useState } from 'react';
+import { StyleSheet, Text, View, Switch } from "react-native";
+import F5Icon from "react-native-vector-icons/FontAwesome5";
+import F6Icon from "react-native-vector-icons/FontAwesome6";
+
+export default function App() {
+  const [switch1Enabled, setSwitch1Enabled] = useState(true);
+  const [switch2Enabled, setSwitch2Enabled] = useState(false);
+  const [switch3Enabled, setSwitch3Enabled] = useState(false);
+
+  const toggleSwitch1 = () => {
+    setSwitch1Enabled(previousState => !previousState);
+  };
+
+  const toggleSwitch2 = () => {
+    setSwitch2Enabled(previousState => !previousState);
+  };
+
+  const toggleSwitch3 = () => {
+    setSwitch3Enabled(previousState => !previousState);
+  };
+
+  return (
+    <View style={styles.container}>
+      <StatusBar style="auto" backgroundColor="#343a40" />
+      <View style={styles.content}>
+        <Text style={styles.headerText}>SMART HOME</Text>
+        <Text style={styles.headerLittleText}>Living Room</Text>
+        <View style={styles.option}>
+          <View style={styles.leftSide}>
+            <F5Icon name="lightbulb" size={50} color={"#ffaa00"} />
+            <Text style={styles.nameText}>Lights</Text>
+          </View>
+          <Switch 
+          onValueChange={toggleSwitch1}
+          value={switch1Enabled}
+          style={styles.switch} />
+        </View>
+        <View style={styles.option}>
+          <View style={styles.leftSide}>
+            <F6Icon name="fan" size={50} color={"gray"} />
+            <Text style={styles.nameText}>Lights</Text>
+          </View>
+          <Switch
+          onValueChange={toggleSwitch2}
+          value={switch2Enabled}
+          style={styles.switch} />
+        </View>
+        <View style={styles.option}>
+          <View style={styles.leftSide}>
+            <F6Icon name="tv" size={50} color={"gray"} />
+            <Text style={styles.nameText}>Lights</Text>
+          </View>
+          <Switch 
+          onValueChange={toggleSwitch3}
+          value={switch3Enabled}
+          style={styles.switch} />
+        </View>
+      </View>
+      <View>
+        <Text style={{color:'white', marginBottom: 20}}>THCNTT - Wemos D1 Sample</Text>
+      </View>
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#343a40",
+    justifyContent: 'space-between',
+    alignItems: "center",
+    marginTop: 40,
+  },
+  content: {
+    alignItems: 'center'
+  },
+  headerText: {
+    color: 'e85d04',
+    fontSize: 32,
+    fontWeight: "bold",
+  },
+  headerLittleText: {
+    fontSize: 20,
+    fontWeight: "600",
+    marginBottom: 20,
+  },
+  option: {
+    width: "90%",
+    backgroundColor: "#e5e5e5",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    padding: 16,
+    marginTop: 8,
+    marginBottom: 8,
+    borderRadius: 6,
+  },
+  leftSide: {
+    flexDirection: "row",
+    gap: 16,
+    alignItems: "center",
+  },
+  nameText: {
+    fontSize: 18,
+  },
+});
